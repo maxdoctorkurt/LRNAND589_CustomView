@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CustomView">
+
+        <attr name="defaultColor" format="color"/>
+        <attr name="circleDrawable" format="reference"/>
+        <attr name="circleColorType">
+            <flag name="none" value="0" />
+            <flag name="fill" value="1" />
+            <flag name="stroke" value="2" />
+            <flag name="fillStroke" value="3" />
+        </attr>
+    </declare-styleable>
+
+</resources>
