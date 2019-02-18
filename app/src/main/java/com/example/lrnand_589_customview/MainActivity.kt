@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         customView.colorSet = mutableListOf(Color.BLUE, Color.MAGENTA, Color.CYAN, Color.RED, Color.GREEN)
 
         customView.limitExceededCallback = {
