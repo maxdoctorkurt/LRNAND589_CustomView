@@ -10,6 +10,9 @@ import androidx.annotation.ColorInt
 import android.os.Parcel
 import android.view.View
 import com.google.gson.Gson
+import androidx.annotation.AttrRes
+import com.example.lrnand_589_customview.R
+
 
 class CustomView(context: Context, private var attrSet: AttributeSet) :
     FrameLayout(context, attrSet) {
@@ -20,10 +23,29 @@ class CustomView(context: Context, private var attrSet: AttributeSet) :
     private var figures = mutableListOf<Figure>()
     var colorSet = mutableListOf<Int>()
     var limitExceededCallback: (() -> Unit)? = null
-
     init {
         setWillNotDraw(false)
         isSaveEnabled = true;
+
+        // TODO - посмотреть что там со ссылками на ресурсы
+        context.theme.obtainStyledAttributes(
+            attrSet,
+            R.styleable.CustomView,
+            0, 0
+        ).apply {
+
+            try {
+                val colors = getTextArray(R.styleable.CustomView_colorSetReference)
+                colors?.let {
+                    val s = it.forEach {
+                        val s = it.toString()
+                        colorSet.add(Color.parseColor(s))
+                    }
+                }
+            } finally {
+                recycle()
+            }
+        }
     }
 
     private fun addFigure(x: Float, y: Float) {
@@ -73,7 +95,7 @@ class CustomView(context: Context, private var attrSet: AttributeSet) :
     public override fun onSaveInstanceState(): Parcelable? {
         val superState = super.onSaveInstanceState()
 
-        if(superState != null) {
+        if (superState != null) {
             val ss = SavedState(superState)
             val gson = Gson()
             ss.figuresAndColors = gson.toJson(FiguresAndColors(figures, colorSet))

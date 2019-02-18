@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="defaultColorSet">
+        <item>#d57ddd77</item>
+        <item>#ddddaa32</item>
+        <item>#d43daa32</item>
+        <item>#97dde3c2</item>
+    </string-array>
+</resources>
